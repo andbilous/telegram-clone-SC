@@ -1,0 +1,148 @@
+{
+  "employees": [
+    {
+      "id": 2233315252,
+      "name": "John14124224",
+      "phone": 2233315252,
+      "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png",
+      "contacts": [
+        {
+          "id": "120125",
+          "name": "Amy Farha",
+          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
+          "subtitle": "Vice President"
+        },
+        {
+          "id": "12012225",
+          "name": "Amydfha",
+          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/129.jpg",
+          "subtitle": "Vice President"
+        }
+      ],
+      "chats": [
+        {
+          "id": "chat1",
+          "messages": [
+            {
+              "id": "1",
+              "message": "Hello"
+            },
+            {
+              "id": "2",
+              "message": "Hello2"
+            }
+          ]
+        },
+        {
+          "id": "chat2",
+          "messages": [
+            {
+              "id": "4",
+              "message": "Hello"
+            },
+            {
+              "id": "5",
+              "message": "Hello2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 123123123123,
+      "name": "John124",
+      "phone": 123123123123,
+      "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png",
+      "contacts": [
+        {
+          "id": "120125",
+          "name": "Amy Farha",
+          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
+          "subtitle": "Vice President"
+        },
+        {
+          "id": "12012225",
+          "name": "Amydfha",
+          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/129.jpg",
+          "subtitle": "Vice President"
+        }
+      ],
+      "chats": [
+        {
+          "id": "chat1",
+          "messages": [
+            {
+              "id": "1",
+              "message": "Hello"
+            },
+            {
+              "id": "2",
+              "message": "Hello2"
+            }
+          ]
+        },
+        {
+          "id": "chat2",
+          "messages": [
+            {
+              "id": "4",
+              "message": "Hello"
+            },
+            {
+              "id": "5",
+              "message": "Hello2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1211123123,
+      "name": "John12234",
+      "phone": 1211123123,
+      "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png",
+      "contacts": [
+        {
+          "id": "120125",
+          "name": "Amy Farha",
+          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
+          "subtitle": "Vice President"
+        },
+        {
+          "id": "12012225",
+          "name": "Amydfha",
+          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/129.jpg",
+          "subtitle": "Vice President"
+        }
+      ],
+      "chats": [
+        {
+          "id": "chat1",
+          "messages": [
+            {
+              "id": "1",
+              "message": "Hello"
+            },
+            {
+              "id": "2",
+              "message": "Hello2"
+            }
+          ]
+        },
+        {
+          "id": "chat2",
+          "messages": [
+            {
+              "id": "4",
+              "message": "Hello"
+            },
+            {
+              "id": "5",
+              "message": "Hello2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
