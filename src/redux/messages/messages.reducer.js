@@ -15,7 +15,7 @@ const MessagesReducer = (state = initialState, action) => {
     case actionTypes.REMOVE_MESSAGE:
       return {
         ...state,
-        items: state.items.filter((message) => message.id !== action.payload)
+        items: state.items.filter((item) => item.id !== action.payload)
       };
     case actionTypes.LOAD_MESSAGES:
       return {
@@ -23,10 +23,10 @@ const MessagesReducer = (state = initialState, action) => {
         items: action.payload,
         isLoading: false
       };
-    case actionTypes.FETCH_MESSAGES_REQUEST:
+    case actionTypes.FILTER_MESSAGES:
       return {
         ...state,
-        isLoading: action.payload
+        items: state.items.filter((item) => item.message.includes(action.payload))
       };
     default:
       return state;

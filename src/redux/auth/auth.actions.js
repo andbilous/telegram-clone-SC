@@ -14,6 +14,7 @@ export const submitForm = (credentials) => (dispatch) => {
   loginService.submit().then(() => {
     axios.get(`http://localhost:3000/employees/${credentials.phone}`)
       .then((res) => {
+        dispatch(submitFormSuccess());
         const userData = res.data;
         dispatch(loadContacts(userData.contacts));
         dispatch(loadMessages(userData.chats[0].messages));
@@ -22,8 +23,7 @@ export const submitForm = (credentials) => (dispatch) => {
       });
   })
     .catch(() => {
-        console.log(loginService.errors);
-        dispatch(submitFormFailure(loginService.errors));
+      dispatch(submitFormFailure('Error'));
     });
 };
 
@@ -32,13 +32,12 @@ const submitFormStart = () => ({
   type: actionTypes.SUBMIT_FORM_START
 });
 
-const submitFormSuccess = (data) => ({
+const submitFormSuccess = () => ({
   type: actionTypes.SUBMIT_FORM_SUCCESS,
-  payload: data
 });
 
-const submitFormFailure = (errors) => ({
+const submitFormFailure = (error) => ({
   type: actionTypes.SUBMIT_FORM_FAILURE,
-  payload: errors
+  payload: error
 });
 export default submitForm;

@@ -16,3 +16,7 @@ export const deleteMessage = (id) => ({
   type: actionTypes.REMOVE_MESSAGE,
   payload: id
 });
+export const filterMessages = (message) => ({
+  type: actionTypes.FILTER_MESSAGES,
+  payload: message
+});

@@ -29,7 +29,7 @@ const Contacts = ({ items }) => (
       }}
       centerComponent={{ text: 'CONTACT LIST', style: { color: '#fff' } }}
       rightComponent={{ icon: 'home', color: '#fff' }}
-      backgroundColor="pink"
+      backgroundColor="#0088cc"
     />
     <FlatList
       keyExtractor={keyExtractor}

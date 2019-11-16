@@ -20,7 +20,7 @@ const Profile = ({ data }) => (
       }}
       centerComponent={{ text: 'Profile Page', style: { color: '#fff' } }}
       rightComponent={{ icon: 'home', color: '#fff' }}
-      backgroundColor="pink"
+      backgroundColor="#0088cc"
     />
     <View>
       <Image

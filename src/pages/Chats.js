@@ -1,89 +1,3 @@
-// import React, { useState } from 'react';
-// import {
-//   StyleSheet,
-//   Text,
-//   View,
-//   TextInput,
-//   TouchableOpacity,
-//   FlatList
-// } from 'react-native';
-// import { connect } from 'react-redux';
-//
-// const DATA = [
-//   {
-//     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-//     title: 'First Item',
-//   },
-//   {
-//     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-//     title: 'Second Item',
-//   },
-//   {
-//     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-//     title: 'Third Item',
-//   },
-// ];
-// function Item({
-//   id, title, selected, onSelect
-// }) {
-//   return (
-//     <TouchableOpacity
-//       onPress={() => onSelect(id)}
-//       style={[
-//         styles.item,
-//         { backgroundColor: selected ? '#6e3b6e' : '#f9c2ff' },
-//       ]}
-//     >
-//       <Text style={styles.title}>{title}</Text>
-//     </TouchableOpacity>
-//   );
-// }
-// const Chats = () => {
-//   const [selected, setSelected] = useState(new Map());
-//   const onSelect = React.useCallback(
-//     (id) => {
-//       const newSelected = new Map(selected);
-//       newSelected.set(id, !selected.get(id));
-//
-//       setSelected(newSelected);
-//     },
-//     [selected],
-//   );
-//   return (
-//     <View>
-//       <Text>Chats</Text>
-//       <FlatList
-//         data={DATA}
-//         renderItem={({ item }) => (
-//           <Item
-//             id={item.id}
-//             title={item.title}
-//             selected={!!selected.get(item.id)}
-//             onSelect={onSelect}
-//           />
-//         )}
-//         keyExtractor={(item) => item.id}
-//         extraData={selected}
-//       />
-//     </View>
-//   );
-// };
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-//   item: {
-//     backgroundColor: '#f9c2ff',
-//     padding: 20,
-//     marginVertical: 8,
-//     marginHorizontal: 16,
-//   },
-//   title: {
-//     fontSize: 32,
-//   },
-// });
-//
-// export default Chats;
 import React from 'react';
 import {
   StyleSheet,
@@ -127,9 +41,9 @@ const Chats = () => (
         color: '#fff',
         onPress: () => Alert.alert('ea'),
       }}
-      centerComponent={{ text: 'CONTACT LIST', style: { color: '#fff' } }}
+      centerComponent={{ text: 'CHAT LIST', style: { color: '#fff' } }}
       rightComponent={{ icon: 'home', color: '#fff' }}
-      backgroundColor="pink"
+      backgroundColor="#0088cc"
     />
     <FlatList
       keyExtractor={keyExtractor}

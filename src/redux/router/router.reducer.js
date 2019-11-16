@@ -2,7 +2,7 @@ import { pageTypes, actionTypes } from './router.types';
 
 
 const initialValues = {
-  currentPage: pageTypes.AUTH
+  currentPage: pageTypes.MESSAGES
 };
 
 const routerReducer = ((state = initialValues, action) => {

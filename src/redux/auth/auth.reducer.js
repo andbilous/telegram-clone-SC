@@ -2,8 +2,7 @@ import { actionTypes } from './auth.types';
 
 const initialValues = {
   isLoading: false,
-  isLoggedIn: false,
-  errors: []
+  error: ''
 };
 
 const authReducer = (state = initialValues, action) => {
@@ -17,12 +16,11 @@ const authReducer = (state = initialValues, action) => {
       return {
         ...state,
         isLoading: false,
-        isLoggedIn: true,
       };
     case actionTypes.SUBMIT_FORM_FAILURE:
       return {
         ...state,
-        errors: action.payload,
+        error: action.payload,
         isLoading: false,
       };
     default: return state;

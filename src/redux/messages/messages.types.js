@@ -2,5 +2,6 @@ const actionTypes = {
   ADD_MESSAGE: 'ADD_MESSAGE',
   LOAD_MESSAGES: 'LOAD_MESSAGES',
   REMOVE_MESSAGE: ' REMOVE_MESSAGE',
+  FILTER_MESSAGES:'FILTER_MESSAGES'
 };
 export default actionTypes;
