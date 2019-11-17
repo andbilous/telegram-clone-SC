@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import {
   StyleSheet,
@@ -6,10 +7,15 @@ import {
 } from 'react-native';
 
 
-const Button = ({ title, handler }) => (
+type Props ={
+  title:string,
+  handler:()=>{}
+}
+
+const Button = ({ title, handler }:Props) => (
   <TouchableOpacity
     title={title}
-    style={title === 'submit' ? styles.submit : styles.navigate}
+    style={title === 'submit' ? styles.submit : styles.forward}
     onPress={handler}
   >
     <Text>{title}</Text>
@@ -17,10 +23,11 @@ const Button = ({ title, handler }) => (
 );
 const styles = StyleSheet.create({
   submit: {
-    backgroundColor: 'green',
+    backgroundColor: '#0088cc',
     padding: 15,
     borderRadius: 6,
-    marginTop: 5
+    alignSelf: 'center',
+    marginTop: 10
   },
   navigate: {
     backgroundColor: 'red',

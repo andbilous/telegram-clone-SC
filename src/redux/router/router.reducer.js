@@ -2,7 +2,7 @@ import { pageTypes, actionTypes } from './router.types';
 
 
 const initialValues = {
-  currentPage: pageTypes.MESSAGES
+  currentPage: pageTypes.AUTH
 };
 
 const routerReducer = ((state = initialValues, action) => {
@@ -26,6 +26,11 @@ const routerReducer = ((state = initialValues, action) => {
       return {
         ...state,
         currentPage: pageTypes.PROFILE
+      };
+    case actionTypes.GO_TO_AUTH_PAGE:
+      return {
+        ...state,
+        currentPage: pageTypes.AUTH
       };
     default:
       return state;

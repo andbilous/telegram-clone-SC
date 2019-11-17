@@ -20,3 +20,7 @@ export const filterMessages = (message) => ({
   type: actionTypes.FILTER_MESSAGES,
   payload: message
 });
+export const setChatId = (id) => ({
+  type: actionTypes.SET_CHAT_ID,
+  payload: id
+});

@@ -1,27 +1,41 @@
+// @flow
 import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  TextInput, ActivityIndicator
+  TextInput, ActivityIndicator, Image,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import Button from '../components/Button';
+import ErrorPage from './ErrorPage';
 import { submitForm } from '../redux/auth/auth.actions';
 
-const Auth = ({ submitForm, isLoading, error }) => {
+type Props ={
+  submitForm:Function,
+  isLoading:boolean,
+  error:string
+}
+
+const Auth = ({ submitForm, isLoading, error }:Props) => {
   const onSubmit = (credentials) => {
     submitForm(credentials);
   };
   if (error.length) {
-    return <Text style={styles.errorTextStyle}>Error ! Please try again</Text>;
+    return <ErrorPage />;
   }
   if (isLoading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
   return (
     <View style={styles.container}>
+      <Image
+        style={{
+          width: 50, height: 50, alignSelf: 'center', marginBottom: 30
+        }}
+        source={{ uri: '/Users/andbilous/Desktop/TelegramCloneDraft/assets/telegram.png' }}
+      />
       <Formik
         initialValues={{ phone: '', password: '' }}
         onSubmit={(values) => onSubmit(values)}
@@ -97,13 +111,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold'
-  },
-  cvvField: {
-    width: 80
-  },
-  errorTextStyle: {
-    color: 'red',
-    marginBottom: 5
   },
 });
 export default connect((state) => ({

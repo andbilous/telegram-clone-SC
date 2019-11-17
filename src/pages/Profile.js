@@ -1,105 +1,132 @@
-import React from 'react';
+// @flow
+import React, { useState } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Alert,
-  TextInput
+  StyleSheet, Text, View, Image, Alert, TextInput, TouchableOpacity
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { setName, setPhone } from '../redux/userProfile/userProfile.actions';
+import { goToContactsPage } from '../redux/router/router.actions';
 
-const Profile = ({ data }) => (
-  <View>
-    <Header
-      leftComponent={{
-        icon: 'menu',
-        color: '#fff',
-        onPress: () => Alert.alert('ea'),
-      }}
-      centerComponent={{ text: 'Profile Page', style: { color: '#fff' } }}
-      rightComponent={{ icon: 'home', color: '#fff' }}
-      backgroundColor="#0088cc"
-    />
-    <View>
+type Props ={
+  data:Array,
+  goToProfilePage:()=>{},
+  setNameAction:()=>{},
+  setPhoneAction:()=>{},
+  goToContactsPage:()=>{}
+}
+
+const Profile = ({
+  data, setNameAction, setPhoneAction, goToContactsPage
+}:Props) => {
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+  const RightArrow = () => (
+    <TouchableOpacity onPress={goToContactsPage}>
       <Image
         style={{ width: 50, height: 50 }}
-        source={{ uri: data.avatar }}
+        source={{ uri: '/Users/andbilous/Desktop/TelegramCloneDraft/assets/right-arrow.png' }}
       />
-      <Text>Name</Text>
-      <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-        value={data.name}
+    </TouchableOpacity>
+  );
+  const onChangeName = (value) => {
+    setName(value);
+  };
+  const onChangePhone = (value) => {
+    setPhone(value);
+  };
+  const onSaveValues = () => {
+    setNameAction(name);
+    setPhoneAction(phone);
+    Alert.alert('New Values Has Been Saved');
+  };
+  return (
+    <View style={styles.container}>
+      <Header
+        centerComponent={{ text: 'PROFILE PAGE', style: { color: '#fff' } }}
+        rightComponent={<RightArrow />}
+        backgroundColor="#0088cc"
       />
-      <Text>Phone</Text>
-      <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-        value={data.phone}
-      />
+      <View style={styles.formContainer}>
+        <Image
+          style={styles.image}
+          source={{ uri: data.avatar }}
+        />
+        <Text style={styles.header}>
+Hello,
+          {data.name}
+        </Text>
+        <TextInput
+          placeholder={data.name}
+          style={styles.input}
+          value={name}
+          onChangeText={(value) => onChangeName(value)}
+        />
+        <TextInput
+          placeholder={data.phone.toString()}
+          keyboardType="numeric"
+          style={styles.input}
+          value={phone}
+          onChangeText={(value) => onChangePhone(value.toString())}
+        />
+        <TouchableOpacity
+          style={styles.buttonStyle}
+          onPress={onSaveValues}
+        >
+          <Text style={styles.textStyle}>Save</Text>
+        </TouchableOpacity>
+      </View>
     </View>
+  );
+};
 
-  </View>
-
-
-);
 
 const styles = StyleSheet.create({
+  container: {
+    margin: 5,
+  },
+  formContainer: {
+    marginTop: 50
+  },
   header: {
-    backgroundColor: '#00BFFF',
-    height: 200,
-  },
-  avatar: {
-    width: 130,
-    height: 130,
-    borderRadius: 63,
-    borderWidth: 4,
-    borderColor: 'white',
-    marginBottom: 10,
+    fontSize: 18,
     alignSelf: 'center',
-    position: 'absolute',
-    marginTop: 130
+    marginTop: 15
   },
-  name: {
-    fontSize: 22,
-    color: '#000',
-    fontWeight: '600',
+  image: {
+    width: 70,
+    height: 70,
+    alignSelf: 'center',
+    borderRadius: 25
   },
-  body: {
-    marginTop: 40,
+  input: {
+    padding: 3,
+    margin: 15,
+    height: 40,
+    borderColor: '#7a42f4',
+    borderWidth: 1
   },
-  bodyContent: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 30,
-  },
-  info: {
-    fontSize: 16,
-    color: '#00BFFF',
-    marginTop: 10
-  },
-  description: {
-    fontSize: 16,
-    color: '#696969',
-    marginTop: 10,
+  textStyle: {
+    fontSize: 20,
+    color: '#ffffff',
     textAlign: 'center'
   },
-  buttonContainer: {
-    marginTop: 10,
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: 250,
-    borderRadius: 30,
-    backgroundColor: '#00BFFF',
-  },
+  buttonStyle: {
+    width: '70%',
+    alignSelf: 'center',
+    padding: 10,
+    backgroundColor: '#202646',
+    borderRadius: 5
+  }
 });
 const ProfileContainer = connect(
   (state) => ({
     data: state.userProfileReducer.data
-  }), null
+  }), (dispatch) => ({
+    setNameAction: (name) => dispatch(setName(name)),
+    setPhoneAction: (phone) => dispatch(setPhone(phone)),
+    goToContactsPage: () => dispatch(goToContactsPage())
+  })
 )(Profile);
 
 export { ProfileContainer as Profile };

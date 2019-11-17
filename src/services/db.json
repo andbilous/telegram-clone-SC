@@ -2,47 +2,49 @@
   "employees": [
     {
       "id": 11111,
-      "name": "John14124224",
-      "phone": 11111,
-      "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png",
+      "profile": {
+        "name": "John14124224",
+        "phone": 11111,
+        "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png"
+      },
       "contacts": [
         {
           "id": "120125",
           "name": "Amy Farha",
-          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
+          "avatar_url": "/Users/andbilous/Desktop/TelegramCloneDraft/assets/woman.png",
           "subtitle": "Vice President"
         },
         {
           "id": "12012225",
           "name": "Amydfha",
-          "avatar_url": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/129.jpg",
+          "avatar_url": "/Users/andbilous/Desktop/TelegramCloneDraft/assets/man.png",
           "subtitle": "Vice President"
         }
       ],
       "chats": [
         {
-          "id": "chat1",
+          "id": "John",
           "messages": [
             {
               "id": "1",
-              "message": "Hello"
+              "message": "Hello John"
             },
             {
               "id": "2",
-              "message": "Hello2"
+              "message": "Hello John 22222"
             }
           ]
         },
         {
-          "id": "chat2",
+          "id": "Peter",
           "messages": [
             {
               "id": "4",
-              "message": "Hello"
+              "message": "Hello Peter"
             },
             {
               "id": "5",
-              "message": "Hello2"
+              "message": "Hello Peter 222"
             }
           ]
         }
@@ -50,9 +52,11 @@
     },
     {
       "id": 22222,
-      "name": "John124",
-      "phone": 22222,
-      "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png",
+      "profile": {
+        "name": "John124",
+        "phone": 22222,
+        "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png"
+      },
       "contacts": [
         {
           "id": "120125",
@@ -69,20 +73,20 @@
       ],
       "chats": [
         {
-          "id": "chat1",
+          "id": "120125",
           "messages": [
             {
               "id": "1",
               "message": "Hello"
             },
             {
-              "id": "2",
+              "id": "",
               "message": "Hello2"
             }
           ]
         },
         {
-          "id": "chat2",
+          "id": "12012225",
           "messages": [
             {
               "id": "4",
@@ -98,9 +102,11 @@
     },
     {
       "id": 33333,
-      "name": "John12234",
-      "phone": 33333,
-      "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png",
+      "profile": {
+        "name": "John12234",
+        "phone": 33333,
+        "avatar": "https://bootdey.com/img/Content/avatar/avatar6.png"
+      },
       "contacts": [
         {
           "id": "120125",
@@ -117,28 +123,28 @@
       ],
       "chats": [
         {
-          "id": "chat1",
+          "id": "Amy Farha",
           "messages": [
             {
               "id": "1",
-              "message": "Hello"
+              "message": "Hello Amy Farha"
             },
             {
               "id": "2",
-              "message": "Hello2"
+              "message": "Hello2 Amy Farha"
             }
           ]
         },
         {
-          "id": "chat2",
+          "id": "Amydfha",
           "messages": [
             {
               "id": "4",
-              "message": "Hello"
+              "message": "Hello Amydfha"
             },
             {
               "id": "5",
-              "message": "Hello2"
+              "message": "Hello Amydfha"
             }
           ]
         }

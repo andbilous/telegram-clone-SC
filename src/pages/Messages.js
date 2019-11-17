@@ -1,20 +1,26 @@
+// @flow
 import React, { useState } from 'react';
 import {
   Text,
   View,
   TextInput,
   Image,
-  FlatList, ScrollView, Button, StyleSheet, Animated, TouchableHighlight,
+  FlatList, Button, StyleSheet, Animated, TouchableHighlight, TouchableOpacity,
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { connect } from 'react-redux';
 import {
   addMessage, deleteMessage, filterMessages
 } from '../redux/messages/messages.actions';
+import { setForwardedMessage } from '../redux/chats/chats.actions';
 import { goToChatsPage } from '../redux/router/router.actions';
 
+type Props={
+  style:Object,
+  children:Object
+}
 
-const FadeInView = (props) => {
+const FadeInView = (props:Props) => {
   const [fadeAnim] = useState(new Animated.Value(0));
 
   React.useEffect(() => {
@@ -28,10 +34,10 @@ const FadeInView = (props) => {
   }, [fadeAnim]);
 
   return (
-    <Animated.View // Special animatable View
+    <Animated.View
       style={{
         ...props.style,
-        opacity: fadeAnim, // Bind opacity to animated value
+        opacity: fadeAnim,
       }}
     >
       {props.children}
@@ -43,10 +49,12 @@ const keyExtractor = (item, index) => index.toString();
 
 
 const Messages = ({
-  items, addMessage, deleteMessage, filterMessages, goToChatsPage
+  items, addMessage, deleteMessage, filterMessages, goToChatsPage, setForwardedMessage
 }) => {
   const [value, onChangeText] = useState('');
   const [searchWord, setSearchWord] = useState('');
+  const [forwardId, setForwardId] = useState('');
+
   const LeftArrow = () => (
     <TouchableHighlight onPress={goToChatsPage}>
       <Image
@@ -54,7 +62,6 @@ const Messages = ({
         source={{ uri: '/Users/andbilous/Desktop/TelegramCloneDraft/assets/left-arrow.png' }}
       />
     </TouchableHighlight>
-
   );
 
   const handleFilter = () => {
@@ -70,12 +77,28 @@ const Messages = ({
     const handleDelete = () => {
       deleteMessage(item.id);
     };
+    const handleForward = () => {
+      setForwardedMessage({ id: forwardId, message: item.message });
+    };
     return (
       <FadeInView>
         <View
           style={styles.messageStyle}
         >
           <Text>{item.message}</Text>
+          <View style={{ position: 'absolute', right: 70, top: 10 }}>
+            <TextInput
+              style={{ borderWidth: 1, marginBottom: 1 }}
+              onChangeText={(id) => setForwardId(id)}
+              placeholder="Name"
+            />
+            <TouchableOpacity
+              style={{ borderWidth: 1 }}
+              onPress={handleForward}
+            >
+              <Text>Forward</Text>
+            </TouchableOpacity>
+          </View>
           <Button
             title="Delete"
             onPress={handleDelete}
@@ -85,29 +108,22 @@ const Messages = ({
     );
   };
   return (
-    <ScrollView style={{ margin: 10 }}>
+    <View style={{ margin: 10 }}>
       <Header
         leftComponent={<LeftArrow />}
         centerComponent={{ text: 'Private Chat', style: { color: '#fff' } }}
-        // rightComponent={{ icon: 'home', color: '#fff' }}
         backgroundColor="#0088cc"
       />
       <Text style={styles.header}>Messages</Text>
       <TextInput
+        placeholder="Enter message to filter"
         onChangeText={(text) => setSearchWord(text)}
         value={searchWord}
         style={styles.searchInput}
       />
       <Button
-        style={styles.btnStyle}
         title="Filter Messages"
         onPress={handleFilter}
-      />
-      <FlatList
-        style={{ marginTop: 50 }}
-        keyExtractor={keyExtractor}
-        data={items}
-        renderItem={renderItem}
       />
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <TextInput
@@ -116,15 +132,21 @@ const Messages = ({
           onChangeText={(text) => onChangeText(text)}
           value={value.toString()}
         />
-        <TouchableHighlight onPress={addHandler}>
+        <TouchableOpacity onPress={addHandler}>
           <Image
             style={{ width: 50, height: 50 }}
             source={{ uri: '/Users/andbilous/Desktop/TelegramCloneDraft/assets/send-btn.png' }}
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
-
-    </ScrollView>
+      <FlatList
+        initialNumToRender={20}
+        style={{ marginTop: 50 }}
+        keyExtractor={keyExtractor}
+        data={items}
+        renderItem={renderItem}
+      />
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -151,16 +173,6 @@ const styles = StyleSheet.create({
     width: '40%',
     alignSelf: 'center'
   },
-  btnStyle: {
-    borderTopWidth: 30,
-    borderRightWidth: 20,
-    borderBottomWidth: 30,
-    borderLeftWidth: 60,
-    borderTopColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderLeftColor: 'red',
-  },
   messageStyle: {
     margin: 5,
     flexDirection: 'row',
@@ -169,16 +181,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 5,
     backgroundColor: 'rgba(181, 187, 197, 0.82)'
-  }
+  },
 });
 const MessagesContainer = connect(
   (state) => ({
+    chatId: state.messagesReducer.currentChatId,
     items: state.messagesReducer.items
   }), (dispatch) => ({
     addMessage: (message) => dispatch(addMessage(message)),
     deleteMessage: (message) => dispatch(deleteMessage(message)),
     filterMessages: (message) => dispatch(filterMessages(message)),
-    goToChatsPage: () => dispatch(goToChatsPage())
+    goToChatsPage: () => dispatch(goToChatsPage()),
+    setForwardedMessage: (message) => dispatch(setForwardedMessage(message))
   })
 )(Messages);
 export { MessagesContainer as Messages };

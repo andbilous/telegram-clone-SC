@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import Auth from './Auth';
@@ -6,7 +7,11 @@ import { Contacts } from './Contacts';
 import { Messages } from './Messages';
 import { Profile } from './Profile';
 
-const RouteController = ({ currentPage }) => {
+type Props = {
+  currentPage:string
+};
+
+const RouteController = ({ currentPage }:Props) => {
   switch (currentPage) {
     case 'AUTH':
       return <Auth />;

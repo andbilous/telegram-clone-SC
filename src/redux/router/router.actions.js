@@ -14,3 +14,7 @@ export const goToMessagesPage = () => ({
 export const goToProfilePage = () => ({
   type: actionTypes.GO_TO_PROFILE_PAGE
 });
+
+export const goToAuthPage = () => ({
+  type: actionTypes.GO_TO_AUTH_PAGE
+});

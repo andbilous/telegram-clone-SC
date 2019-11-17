@@ -1,9 +1,9 @@
 import actionTypes from './chats.types';
 
 const initialState = {
-  chats: [],
+  items: [],
   isLoading: false,
-  currentChatId: 0,
+  forwardedMessage: {}
 };
 
 const chatsReducer = (state = initialState, action) => {
@@ -11,8 +11,13 @@ const chatsReducer = (state = initialState, action) => {
     case actionTypes.LOAD_CHATS:
       return {
         ...state,
-        chats: action.payload,
+        items: action.payload,
         isLoading: false
+      };
+    case actionTypes.SET_FORWARDED_MESSAGE:
+      return {
+        ...state,
+        forwardedMessage: action.payload
       };
     default:
       return state;

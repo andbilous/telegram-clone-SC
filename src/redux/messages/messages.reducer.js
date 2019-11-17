@@ -1,6 +1,5 @@
 import actionTypes from './messages.types';
 
-
 const initialState = {
   items: [],
   isLoading: false
@@ -27,6 +26,11 @@ const MessagesReducer = (state = initialState, action) => {
       return {
         ...state,
         items: state.items.filter((item) => item.message.includes(action.payload))
+      };
+    case actionTypes.SET_CHAT_ID:
+      return {
+        ...state,
+        currentChatId: action.payload
       };
     default:
       return state;

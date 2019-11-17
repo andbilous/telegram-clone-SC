@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { actionTypes } from './auth.types';
-import { goToContactsPage, goToMessagesPage, goToProfilePage } from '../router/router.actions';
-
-import { loadMessages } from '../messages/messages.actions';
+import { goToProfilePage } from '../router/router.actions';
 import { loadChats } from '../chats/chats.actions';
 import { loadContacts } from '../contacts/contacts.actions';
+import { loadProfileData } from '../userProfile/userProfile.actions';
 import LoginService from '../../services/LoginService';
 
 
@@ -17,9 +16,11 @@ export const submitForm = (credentials) => (dispatch) => {
         dispatch(submitFormSuccess());
         const userData = res.data;
         dispatch(loadContacts(userData.contacts));
-        dispatch(loadMessages(userData.chats[0].messages));
-        dispatch(loadChats(userData.chats));
+          dispatch(loadChats(userData.chats));
+        dispatch(loadProfileData(userData.profile));
         dispatch(goToProfilePage());
+      }).catch(() => {
+        dispatch(submitFormFailure('Error'));
       });
   })
     .catch(() => {
