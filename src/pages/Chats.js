@@ -2,12 +2,13 @@
 import React from 'react';
 import {
   View,
-  FlatList, TouchableHighlight, Image,
+  FlatList,
 } from 'react-native';
 import { Header, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { goToContactsPage, goToMessagesPage } from '../redux/router/router.actions';
 import { setChatId, loadMessages } from '../redux/messages/messages.actions';
+import { LeftArrow } from '../components/LeftArrow';
 
 type Props ={
     items:Array,
@@ -20,7 +21,7 @@ type Props ={
 const keyExtractor = (item, index) => index.toString();
 
 const Chats = ({
-  items, goToContactsPage, goToMessagesPage, loadMessages, forwardedMessage
+  items,  goToMessagesPage, loadMessages, forwardedMessage
 }:Props) => {
   const renderItem = ({ item }) => {
     const handleChatClick = () => {
@@ -41,18 +42,10 @@ const Chats = ({
       />
     );
   };
-  const LeftArrow = () => (
-    <TouchableHighlight onPress={goToContactsPage}>
-      <Image
-        style={{ width: 50, height: 50 }}
-        source={{ uri: '/Users/andbilous/Desktop/TelegramCloneDraft/assets/left-arrow.png' }}
-      />
-    </TouchableHighlight>
-  );
   return (
     <View>
       <Header
-        leftComponent={<LeftArrow />}
+        leftComponent={<LeftArrow navigateTo="contacts" />}
         centerComponent={{ text: 'CHATS', style: { color: '#fff' } }}
         backgroundColor="#0088cc"
       />

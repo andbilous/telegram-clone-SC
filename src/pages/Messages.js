@@ -5,7 +5,7 @@ import {
   View,
   TextInput,
   Image,
-  FlatList, Button, StyleSheet, Animated, TouchableHighlight, TouchableOpacity,
+  FlatList, Button, StyleSheet, Animated, TouchableOpacity,
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -14,6 +14,7 @@ import {
 } from '../redux/messages/messages.actions';
 import { setForwardedMessage } from '../redux/chats/chats.actions';
 import { goToChatsPage } from '../redux/router/router.actions';
+import { LeftArrow } from '../components/LeftArrow';
 
 type Props={
   style:Object,
@@ -54,15 +55,6 @@ const Messages = ({
   const [value, onChangeText] = useState('');
   const [searchWord, setSearchWord] = useState('');
   const [forwardId, setForwardId] = useState('');
-
-  const LeftArrow = () => (
-    <TouchableHighlight onPress={goToChatsPage}>
-      <Image
-        style={{ width: 50, height: 50 }}
-        source={{ uri: '/Users/andbilous/Desktop/TelegramCloneDraft/assets/left-arrow.png' }}
-      />
-    </TouchableHighlight>
-  );
 
   const handleFilter = () => {
     filterMessages(searchWord);
@@ -110,7 +102,7 @@ const Messages = ({
   return (
     <View style={{ margin: 10 }}>
       <Header
-        leftComponent={<LeftArrow />}
+        leftComponent={<LeftArrow navigateTo="chats" />}
         centerComponent={{ text: 'Private Chat', style: { color: '#fff' } }}
         backgroundColor="#0088cc"
       />

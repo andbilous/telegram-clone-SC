@@ -7,6 +7,7 @@ import {
 import { ListItem, Header } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { goToProfilePage, goToChatsPage } from '../redux/router/router.actions';
+import { LeftArrow } from '../components/LeftArrow';
 
 type Props ={
     items:Array,
@@ -25,15 +26,7 @@ const renderItem = ({ item }) => (
     bottomDivider
   />
 );
-const Contacts = ({ items, goToProfilePage, goToChatsPage }:Props) => {
-  const LeftArrow = () => (
-    <TouchableHighlight onPress={goToProfilePage}>
-      <Image
-        style={{ width: 50, height: 50 }}
-        source={{ uri: '/Users/andbilous/Desktop/TelegramCloneDraft/assets/left-arrow.png' }}
-      />
-    </TouchableHighlight>
-  );
+const Contacts = ({ items, goToChatsPage }:Props) => {
   const RightArrow = () => (
     <TouchableHighlight onPress={goToChatsPage}>
       <Image
@@ -45,7 +38,7 @@ const Contacts = ({ items, goToProfilePage, goToChatsPage }:Props) => {
   return (
     <>
       <Header
-        leftComponent={<LeftArrow />}
+        leftComponent={<LeftArrow navigateTo="profile" />}
         rightComponent={RightArrow}
         centerComponent={{ text: 'CONTACT LIST', style: { color: '#fff' } }}
         backgroundColor="#0088cc"
